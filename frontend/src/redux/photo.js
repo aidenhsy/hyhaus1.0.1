@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // @desc list all photos
 export const photosSlice = createSlice({
-  name: 'photoList',
+  name: 'photos',
   initialState: {
     loading: 'idle',
     photos: [],
@@ -89,7 +89,7 @@ export const updatePhoto = (photoID, updatedPhoto) => async (dispatch) => {
   }
 };
 
-export const createPhoto = () => async (dispatch, getState) => {
+export const createPhoto = (newImage) => async (dispatch, getState) => {
   dispatch(photosLoading());
   try {
     const {
@@ -101,7 +101,7 @@ export const createPhoto = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.post(`/api/photos/`, {}, config);
+    const { data } = await axios.post(`/api/upload`, newImage, config);
     dispatch(photoCreateSuccess(data));
   } catch (error) {
     dispatch(photosError(error.toString()));

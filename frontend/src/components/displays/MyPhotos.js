@@ -17,8 +17,8 @@ const MyPhotos = ({ userId, history }) => {
     <div
       style={{
         display: 'flex',
-        flexDirection: 'column',
         width: '30%',
+        padding: '0 4em',
         marginTop: '2em',
       }}
     >

@@ -27,6 +27,9 @@ const PhotoSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    cloudinary_id: {
+      type: String,
+    },
     time: {
       type: String,
       default: new Date().toDateString().slice(4, 15),

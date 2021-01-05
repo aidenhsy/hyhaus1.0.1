@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
+import { useForm } from 'react-hook-form';
+import { createPhoto } from '../../redux/photo';
+import { withRouter } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 
@@ -22,13 +25,20 @@ const useStyles = makeStyles((theme) => ({
 
 const AddPhotoForm = ({ history }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
-  const [image, setImage] = useState('');
+  const { register, handleSubmit } = useForm();
 
-  const dispatch = useDispatch();
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = (data) => {
+    let formData = new FormData();
+
+    formData.append('image', data.image[0]);
+    formData.append('name', name);
+    console.log(formData.get('name'));
+    console.log(formData.get('image'));
+    dispatch(createPhoto(formData));
+    // history.push('/profile');
   };
 
   return (
@@ -46,37 +56,20 @@ const AddPhotoForm = ({ history }) => {
           <Grid item style={{ maxWidth: '20em' }}>
             <Typography variant="h4">Add a new photo</Typography>
           </Grid>
-          <form onSubmit={submitHandler}>
-            <Grid item container direction="column">
-              <Grid item style={{ margin: '1em 0', maxWidth: '15em' }}>
-                <TextField
-                  label="Name"
-                  id="name"
-                  type="text"
-                  fullWidth
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </Grid>
-              <Grid item style={{ maxWidth: '15em' }}>
-                <TextField
-                  label="Image"
-                  type="text"
-                  onChange={(e) => setImage(e.target.value)}
-                  fullWidth
-                  value={image}
-                />
-              </Grid>
-              <Grid item style={{ marginTop: '2em' }}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className={classes.btn}
-                >
-                  Upload
-                </Button>
-              </Grid>
-            </Grid>
+          <form onSubmit={handleSubmit(submitHandler)}>
+            <TextField
+              label="Name"
+              id="name"
+              type="text"
+              fullWidth
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input ref={register} type="file" name="image" />
+            <br />
+            <Button className={classes.btn} type="submit">
+              Upload
+            </Button>
           </form>
         </Grid>
       </Grid>
@@ -84,4 +77,4 @@ const AddPhotoForm = ({ history }) => {
   );
 };
 
-export default AddPhotoForm;
+export default withRouter(AddPhotoForm);

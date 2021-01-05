@@ -18,7 +18,7 @@ const UserSchema = new mongoose.Schema(
     },
     isPhotographer: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     city: String,
     image: String,

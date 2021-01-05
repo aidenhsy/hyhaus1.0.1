@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 
 import Welcome from '../components/landing/Welcome';
-import common from '../components/common';
+import AllPhotos from '../components/displays/AllPhotos';
 
 import { useSelector } from 'react-redux';
 
@@ -16,7 +16,7 @@ const Landing = () => {
           <Welcome />
         </Grid>
       )}
-      {/* <common.PhotosFiltered /> */}
+      <AllPhotos />
     </Grid>
   );
 };

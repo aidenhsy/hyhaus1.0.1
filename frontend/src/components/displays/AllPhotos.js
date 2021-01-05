@@ -77,38 +77,35 @@ const AllPhotos = () => {
           </Tabs>
         </AppBar>
       </ElevationScroll>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        {loading === 'pending' ? (
-          <CircularProgress
-            color="secondary"
-            size="10em"
-            style={{ marginTop: '10em' }}
-          />
-        ) : error ? (
-          <h1>{error}</h1>
-        ) : (
-          ['', 'shanghai', 'beijing', 'chengdu', 'dalian'].map(
-            (city, index) => (
-              <TabPanel value={active} index={index} key={index}>
-                <Grid
-                  container
-                  style={{ marginTop: '0.5em' }}
-                  justify="center"
-                  spacing={2}
-                >
-                  {photos
-                    .filter((photo) => photo.user.city.includes(city))
-                    .map((photo) => (
-                      <Grid item key={photo._id} xs={6} sm={6} md={4} xl={3}>
-                        <PhotoCard photo={photo} />
-                      </Grid>
-                    ))}
-                </Grid>
-              </TabPanel>
-            )
-          )
-        )}
-      </div>
+
+      {loading === 'pending' ? (
+        <CircularProgress
+          color="secondary"
+          size="10em"
+          style={{ marginTop: '10em' }}
+        />
+      ) : error ? (
+        <h1>{error}</h1>
+      ) : (
+        ['', 'shanghai', 'beijing', 'chengdu', 'dalian'].map((city, index) => (
+          <TabPanel value={active} index={index} key={index}>
+            <Grid
+              container
+              style={{ marginTop: '2em' }}
+              justify="center"
+              spacing={2}
+            >
+              {photos
+                .filter((photo) => photo.user.city.includes(city))
+                .map((photo) => (
+                  <Grid item key={photo._id} xs={6} sm={6} md={4} xl={3}>
+                    <PhotoCard photo={photo} />
+                  </Grid>
+                ))}
+            </Grid>
+          </TabPanel>
+        ))
+      )}
     </React.Fragment>
   );
 };

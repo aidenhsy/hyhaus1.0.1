@@ -17,6 +17,11 @@ const App = () => {
             <Route path="/signup" component={pages.SignUp} />
             <Route path="/profile" component={pages.Profile} />
             <Route path="/addphoto" component={pages.AddPhoto} />
+            <Route path="/hire" component={pages.Hire} />
+            <Route
+              path="/photographers/:id"
+              component={pages.PhotographerProfile}
+            />
           </Switch>
         </main>
 
