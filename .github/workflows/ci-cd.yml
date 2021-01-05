@@ -43,7 +43,7 @@ jobs:
       matrix:
         python-version: [3.8]
         node-version: ['12.x']
-        appname: ['aws-codedeploy']
+        appname: ['hyhaus1.0.1']
         deploy-group: ['staging']
         s3-bucket: ['hyhaus-deployment']
         s3-filename: ['staging-aws-codedeploy-${{ github.sha }}']
