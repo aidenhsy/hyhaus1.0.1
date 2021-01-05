@@ -1,19 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ThemeProvider } from '@material-ui/styles';
+import pages from './pages';
+import common from './components/common';
 
 const App = () => {
-  const [message, setMessage] = useState('');
-  useEffect(() => {
-    const fetchMessage = async () => {
-      const { data } = await axios.get('/api/message');
-      setMessage(data);
-    };
-    fetchMessage();
-  }, []);
   return (
-    <div>
-      <h1>{message}</h1>
-    </div>
+    <BrowserRouter>
+      <ThemeProvider theme={common.Theme}>
+        <common.Header />
+
+        <main style={{ height: '80vh' }}>
+          <Switch>
+            <Route path="/" component={pages.Landing} exact />
+            <Route path="/signin" component={pages.SignIn} />
+            <Route path="/signup" component={pages.SignUp} />
+            <Route path="/profile" component={pages.Profile} />
+            <Route path="/addphoto" component={pages.AddPhoto} />
+          </Switch>
+        </main>
+
+        {/* <common.Footer /> */}
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
 
