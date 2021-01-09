@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '2em',
   },
+  text: {
+    marginTop: '2em',
+  },
   btn: {
     backgroundColor: theme.palette.common.purple,
     color: 'white',
@@ -19,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     borderRadius: 50,
     height: 45,
+    marginTop: '2em',
     width: 245,
   },
 }));
@@ -63,10 +67,18 @@ const AddPhotoForm = ({ history }) => {
               type="text"
               fullWidth
               value={name}
+              className={classes.text}
               onChange={(e) => setName(e.target.value)}
             />
-            <input ref={register} type="file" name="image" />
-            <br />
+            <Button
+              variant="contained"
+              component="label"
+              className={classes.text}
+            >
+              Upload File
+              <input type="file" hidden ref={register} name="image" />
+            </Button>
+
             <Button className={classes.btn} type="submit">
               Upload
             </Button>
