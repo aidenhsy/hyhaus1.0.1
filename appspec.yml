@@ -1,12 +1,12 @@
-version: 0.0
+version: 0.1
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/aws-codedeploy
+    destination: /var/www/html/hyhaus
 permissions:
-  - object: /home/ubuntu
-    owner: ubuntu
-    group: ubuntu
+  - object: /var/www/html
+    owner: root
+    group: root
     type:
       - directory
       - file
