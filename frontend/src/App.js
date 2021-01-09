@@ -18,6 +18,7 @@ const App = () => {
             <Route path="/profile" component={pages.Profile} />
             <Route path="/addphoto" component={pages.AddPhoto} />
             <Route path="/hire" component={pages.Hire} />
+            <Route path="/findwork" component={pages.FindWork} />
             <Route
               path="/photographers/:id"
               component={pages.PhotographerProfile}

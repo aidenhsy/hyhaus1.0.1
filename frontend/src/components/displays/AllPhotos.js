@@ -18,7 +18,7 @@ function ElevationScroll(props) {
   const { children, window } = props;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 80,
+    threshold: 400,
     target: window ? window() : undefined,
   });
 
@@ -34,6 +34,12 @@ function TabPanel({ children, index, value }) {
 const useStyles = makeStyles({
   root: {
     justifyContent: 'center',
+  },
+  containerRoot: {
+    paddingTop: '20px',
+    paddingLeft: '10em',
+    paddingRight: '10em',
+    justify: 'center',
   },
   scroller: {
     flexGrow: '0',
@@ -89,16 +95,11 @@ const AllPhotos = () => {
       ) : (
         ['', 'shanghai', 'beijing', 'chengdu', 'dalian'].map((city, index) => (
           <TabPanel value={active} index={index} key={index}>
-            <Grid
-              container
-              style={{ marginTop: '2em' }}
-              justify="center"
-              spacing={2}
-            >
+            <Grid container className={classes.containerRoot} spacing={2}>
               {photos
                 .filter((photo) => photo.user.city.includes(city))
                 .map((photo) => (
-                  <Grid item key={photo._id} xs={6} sm={6} md={4} xl={3}>
+                  <Grid item key={photo._id} xs={12} sm={6} md={4} xl={3}>
                     <PhotoCard photo={photo} />
                   </Grid>
                 ))}
