@@ -13,8 +13,9 @@ import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
 import logohandwriting from '../../assets/svg/logohandwriting.svg';
 
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../redux/user';
+import Cookies from 'js-cookie';
+
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -94,10 +95,9 @@ const Header = () => {
   };
 
   const { userInfo } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    dispatch(logout());
+    Cookies.remove('userInfo');
   };
 
   const buttons = (
@@ -118,15 +118,18 @@ const Header = () => {
         </ButtonGroup>
       </Hidden>
       {userInfo.name ? (
-        <Avatar
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup={anchorEl ? 'true' : undefined}
-          onClick={(event) => handleClick(event)}
-          style={{ marginLeft: 'auto' }}
-          className={classes.avatar}
-        >
-          {userInfo.name.split(' ')[0].charAt(0)}
-        </Avatar>
+        <React.Fragment>
+          <Button style={{ marginLeft: 'auto' }}>Messages</Button>
+          <Avatar
+            aria-owns={anchorEl ? 'simple-menu' : undefined}
+            aria-haspopup={anchorEl ? 'true' : undefined}
+            onClick={(event) => handleClick(event)}
+            style={{ marginLeft: '2em' }}
+            className={classes.avatar}
+          >
+            {userInfo.name.split(' ')[0].charAt(0)}
+          </Avatar>
+        </React.Fragment>
       ) : (
         <Button
           component={Link}

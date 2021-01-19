@@ -19,10 +19,12 @@ const App = () => {
             <Route path="/addphoto" component={pages.AddPhoto} />
             <Route path="/hire" component={pages.Hire} />
             <Route path="/findwork" component={pages.FindWork} />
+            <Route path="/messages" component={pages.Messages} />
             <Route
               path="/photographers/:id"
               component={pages.PhotographerProfile}
             />
+            <Route path="/chat/:id" component={pages.Chat} />
           </Switch>
         </main>
 

@@ -91,7 +91,7 @@ const PhotographerProfile = ({ match }) => {
                 variant="outlined"
                 component={Link}
                 className={classes.addBtn}
-                to="/addphoto"
+                to={`/chat/${match.params.id}`}
               >
                 Connect
               </Button>

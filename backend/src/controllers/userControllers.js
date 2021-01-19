@@ -52,6 +52,14 @@ export const login = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Get user profile
+// @route   GET /api/users/profile
+// @access  Private
+export const getUserProfile = asyncHandler(async (req, res) => {
+  const user = req.user;
+  res.json(user);
+});
+
 // @desc    Update user profile
 // @route   PUT /api/users/profile
 // @access  Private

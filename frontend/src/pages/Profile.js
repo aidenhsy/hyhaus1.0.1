@@ -3,12 +3,15 @@ import { Tabs, Tab, AppBar, Avatar, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserDetails } from '../redux/user';
 
 import MyPhotos from '../components/displays/MyPhotos';
 import MyRequests from '../components/lists/MyRequests';
 import MyProjects from '../components/lists/MyProjects';
 import UpdateProfile from '../components/forms/UpdateProfile';
+
+import Cookies from 'js-cookie';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -66,6 +69,7 @@ function TabPanel({ children, index, value }) {
 
 const Profile = ({ history }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const { userInfo } = useSelector((state) => state.user);
   const { successCreate, createdPhoto } = useSelector((state) => state.photos);
@@ -77,16 +81,19 @@ const Profile = ({ history }) => {
   };
 
   useEffect(() => {
+    if (!userInfo.name && Cookies.get('token')) {
+      dispatch(getUserDetails());
+    }
     if (successCreate) {
       history.push(`/photos/${createdPhoto._id}/edit`);
     }
-  }, [successCreate, history, createdPhoto]);
+  }, [successCreate, userInfo, dispatch, history, createdPhoto]);
 
   return (
     <React.Fragment>
       <div className={classes.headerContainer}>
         <Avatar className={classes.avatar}>
-          {userInfo.name.split(' ')[0].charAt(0)}
+          {/* {userInfo.name.split(' ')[0].charAt(0)} */}
         </Avatar>
         <div className={classes.infoContainer}>
           <h1>{userInfo.name}</h1>

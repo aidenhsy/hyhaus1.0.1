@@ -88,7 +88,7 @@ const AllPhotos = () => {
         <CircularProgress
           color="secondary"
           size="10em"
-          style={{ marginTop: '10em' }}
+          style={{ marginTop: '10em', alignSelf: 'center' }}
         />
       ) : error ? (
         <h1>{error}</h1>

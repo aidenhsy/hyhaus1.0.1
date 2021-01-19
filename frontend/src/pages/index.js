@@ -6,6 +6,8 @@ import AddPhoto from './AddPhoto';
 import Hire from './Hire';
 import PhotographerProfile from './PhotographerProfile';
 import FindWork from './FindWork';
+import Messages from './Messages';
+import Chat from './chat/Chat';
 
 const screens = {
   Landing,
@@ -16,6 +18,8 @@ const screens = {
   Hire,
   PhotographerProfile,
   FindWork,
+  Chat,
+  Messages,
 };
 
 export default screens;
